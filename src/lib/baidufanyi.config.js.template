@@ -1,0 +1,5 @@
+// http://api.fanyi.baidu.com/api/trans/product/desktop?req=developer
+module.exports = {
+    appid: 'YOUR APPID',
+    key: 'YOUR KEY'
+}
