@@ -1,26 +1,33 @@
-# aaViewer (aaviewer)
+# AA-Viewer
 
-aa viewer
+> 基于Vue+Quasar进行跨平台开发的AA漫画阅读器
 
-## Install the dependencies
+## 安装使用
+
+### 下载依赖
 ```bash
 yarn
 ```
 
-### Start the app in development mode (hot-code reloading, error reporting, etc.)
+### 启动应用
 ```bash
 quasar dev
 ```
 
-### Lint the files
-```bash
-yarn run lint
-```
-
-### Build the app for production
+### 构建应用
 ```bash
 quasar build
 ```
 
-### Customize the configuration
-See [Configuring quasar.conf.js](https://quasar.dev/quasar-cli/quasar-conf-js).
+### Quasar相关配置
+[Configuring quasar.conf.js](https://quasar.dev/quasar-cli/quasar-conf-js).
+
+### 百度翻译api配置
+```bash
+重命名
+/src/lib/baidufanyi.config.js.template 
+为 
+/src/lib/baidufanyi.config.js
+
+填写对应的`appid`和`key`的值
+```
