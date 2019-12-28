@@ -95,6 +95,27 @@ module.exports = function (ctx) {
           pathRewrite: {
             ['^' + '/baidu-fanyi-api']: ''
           }
+        },
+        '/baidu-oauth-api': {
+          target: `https://openapi.baidu.com/oauth/2.0/token`,
+          changeOrigin: true,
+          pathRewrite: {
+            ['^' + '/baidu-oauth-api']: ''
+          }
+        },
+        '/baidu-tts-api': {
+          target: `http://tsn.baidu.com/text2audio`,
+          changeOrigin: true,
+          pathRewrite: {
+            ['^' + '/baidu-tts-api']: ''
+          }
+        },
+        '/google-tts-api': {
+          target: `https://translate.google.cn/`,
+          changeOrigin: true,
+          pathRewrite: {
+            ['^' + '/google-tts-api']: ''
+          }
         }
       }
     },

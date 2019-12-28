@@ -16,8 +16,8 @@
 </template>
 
 <script>
-import translate from 'translate'
-import baiduFanyiApi from 'src/lib/baidufanyi.config.js'
+import { translateTextBaidu } from 'src/lib/translate'
+import { text2audioJP } from 'src/lib/japaneseTTS'
 export default {
   props: {
     aaContent: {
@@ -47,57 +47,12 @@ export default {
         position[0] -= 50
         position[1] -= 150
         this.tooltipOffset = position
-        this.translateTextBaidu(selStr.trim()).then(text => {
+        translateTextBaidu(selStr.trim()).then(text => {
           this.tooltipText = text
           this.tooltipVisiable = true
         })
+        text2audioJP(selStr.trim())
       }
-    },
-    translateText (textOrigin) {
-      return new Promise((resolve, reject) => {
-        translate(textOrigin, {
-          from: 'ja',
-          to: 'zh',
-          engine: 'google',
-          key: 'YOUR-KEY-HERE'        }).then(text => {
-          console.log(text)
-          resolve(text)
-        }).catch(err => {
-          reject(err)
-        })
-      })
-    },
-    string2md5 (str) {
-      var crypto = require('crypto')
-      // 加盐密码的md5值
-      var md5 = crypto.createHash('md5')
-      var result = md5.update(str).digest('hex')
-      return result
-    },
-    translateTextBaidu (q) {
-      let salt = Math.random().toString().slice(2, 5),
-        appid = baiduFanyiApi.appid, // baidu fanyi 的开发者 appid
-        key = baiduFanyiApi.key, // baidu fanyi 的开发者 key
-        sign = this.string2md5(appid + q + salt + key)
-      console.log('签名：%s', sign)
-      return new Promise((resolve, reject) => {
-        this.$axios.get('/baidu-fanyi-api', {
-          params: {
-            q: q,
-            from: 'ja',
-            to: 'zh',
-            appid: appid,
-            salt: salt,
-            sign: sign
-          }
-        }).then(res => {
-          //   console.log('translateTextBaidu', res)
-          let data = res.data
-          resolve(data.trans_result[0].dst || `error(${data.error_code}): ${data.error_msg}`)
-        }).catch(err => {
-          reject(err)
-        })
-      })
     },
     getSelection () {
       if (document.Selection) {

@@ -31,3 +31,12 @@ quasar build
 
 填写对应的`appid`和`key`的值
 ```
+
+### google-tts-api的一些调整
+
+设置使用 `https://translate.google.cn/` 进行访问
+```
+调整node_modules中的该模块的lib目录下
+api.js，key.js中host的值为 
+https://translate.google.cn/
+```

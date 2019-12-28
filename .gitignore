@@ -35,3 +35,7 @@ yarn-error.log*
 
 # 百度翻译api接口 appid 等配置
 **/baidufanyi.config.js
+# 百度云api接口
+**/baidutts.config.js
+# mp3 缓存文件
+/mp3/*
